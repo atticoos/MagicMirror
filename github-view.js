@@ -2,6 +2,8 @@
 
 var React = require('react-native');
 var Styles = require('./styles.js');
+var Config = require('./env.js');
+var _ = require('lodash');
 var {
   StyleSheet,
   View,
@@ -9,26 +11,46 @@ var {
   Image
 } = React;
 
+function getGithubNotifications () {
+  return fetch('https://api.github.com/notifications?access_token=' + Config.github.access_token)
+  .then(function (response) {
+    return response.json();
+  });
+}
+
 var GithubView = React.createClass({
   getInitialState: function () {
-    return {notifications: 0};
+    return {notifications: []};
+  },
+  componentDidMount: function () {
+    getGithubNotifications().then(function (notifications) {
+      this.setState({notifications: notifications})
+    }.bind(this));
   },
   render: function () {
+    var notifications = this.state.notifications,
+        notificationViews;
+    if (notifications.length > 0) {
+      notificationViews = _.map(notifications, function (notification, index) {
+        return (
+          <View style={styles.row} key={'notification_' + index}>
+            <Text style={styles.notification}>{notification.repository.full_name}</Text>
+            <Text style={styles.notification}>-</Text>
+            <Text style={styles.notification}>{notification.subject.title}</Text>
+          </View>
+        );
+      });
+    } else {
+      notificationViews = (<View></View>);
+    }
+
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <Text style={styles.title}>3 Work Notifications</Text>
+          <Text style={styles.title}>{notifications.length} Work Notifications</Text>
           <Image source={require('image!github')} style={styles.image} />
         </View>
-        <View style={styles.row}>
-          <Text style={styles.notification}>robin-dashboard#2306 Feature - Shareable Models</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.notification}>robin-dashboard#2298 Chore - Angular 1.4.4</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.notification}>robinpowered/robin-dashboard#2319  Bugfix - Set Access Token</Text>
-        </View>
+        {notificationViews}
       </View>
     );
   }
@@ -60,7 +82,8 @@ var styles = StyleSheet.create({
   },
   notification: {
     color: '#fff',
-    fontSize: Styles.fontSize.small
+    fontSize: Styles.fontSize.small,
+    marginLeft: 10
   }
 });
 
