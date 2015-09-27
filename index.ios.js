@@ -10,22 +10,47 @@ var {
   StyleSheet,
   Text,
   View,
+  Dimensions
 } = React;
+
+var WINDOW_WIDTH = Dimensions.get('window').width;
+
+var DateView = require('./date-view'),
+    TimeView = require('./time-view'),
+    WeatherView = require('./weather-view'),
+    StockView = require('./stock-view'),
+    TwitterView = require('./twitter-view'),
+    GithubView = require('./github-view'),
+    CalendarView = require('./calendar-view');
 
 var MagicMirror = React.createClass({
   render: function() {
+    var stocks = ['FB', 'TWTR', 'AAPL', 'GOOGL', 'MSFT', 'TSLA'];
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <View style={styles.row}>
+          <DateView></DateView>
+        </View>
+        <View style={styles.row}>
+          <TimeView></TimeView>
+        </View>
+        <View style={[styles.row, styles.margin, {marginTop: -10}]}>
+          <WeatherView></WeatherView>
+        </View>
+        <View style={[styles.row, styles.margin]}>
+          <TwitterView></TwitterView>
+        </View>
+        <View style={[styles.row, styles.margin]}>
+          <GithubView></GithubView>
+        </View>
+        <View style={[styles.row, styles.margin]}>
+          <CalendarView></CalendarView>
+        </View>
+
+        <View style={styles.stocks}>
+          <StockView style={{width: '100%'}} symbols={stocks}></StockView>
+        </View>
+
       </View>
     );
   }
@@ -34,20 +59,23 @@ var MagicMirror = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#000'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 0
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  margin: {
+    marginBottom: 30
   },
+  stocks: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0
+  }
 });
 
 AppRegistry.registerComponent('MagicMirror', () => MagicMirror);
