@@ -9,16 +9,16 @@ var {
   Image
 } = React;
 
-var GithubView = React.createClass({
+var CalendarView = React.createClass({
   getInitialState: function () {
-    return {notifications: 0};
+    return {events: []};
   },
   render: function () {
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <Text style={styles.title}>3 Work Notifications</Text>
-          <Image source={require('image!github')} style={styles.image} />
+          <Text style={styles.title}>Phone bill due tomorrow</Text>
+          <Image source={require('image!calendar')} style={styles.image} />
         </View>
       </View>
     );
@@ -51,4 +51,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = GithubView;
+module.exports = CalendarView;

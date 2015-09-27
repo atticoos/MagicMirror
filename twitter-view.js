@@ -17,8 +17,8 @@ var TwitterView = React.createClass({
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <Image source={require('image!twitter')} style={styles.image} />
           <Text style={styles.title}>Latest Tweets</Text>
+          <Image source={require('image!twitter')} style={styles.image} />
         </View>
 
         <View style={styles.tweet}>
@@ -45,13 +45,13 @@ var styles = StyleSheet.create({
     width: 40
   },
   title: {
-    marginLeft: 15,
+    marginRight: 15,
     color: '#fff',
     fontSize: 36
   },
   text: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: Styles.fontSize.small,
     textAlign: 'right'
   }
 });

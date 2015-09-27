@@ -27,21 +27,23 @@ var MagicMirror = React.createClass({
         <View style={styles.row}>
           <DateView></DateView>
         </View>
-        <View style={styles.row}>
+        <View style={[styles.row, {marginTop: -10}]}>
           <TimeView></TimeView>
         </View>
-        <View style={[styles.row, styles.margin]}>
+        <View style={[styles.row, styles.margin, {marginTop: -10}]}>
           <WeatherView></WeatherView>
         </View>
-        <View style={styles.row, styles.margin}>
-          <StockView symbols={stocks}></StockView>
-        </View>
-        <View style={styles.row, styles.margin}>
+        <View style={[styles.row, styles.margin]}>
           <TwitterView></TwitterView>
         </View>
         <View style={styles.row}>
           <GithubView></GithubView>
         </View>
+
+        <View style={styles.stocks}>
+          <StockView symbols={stocks}></StockView>
+        </View>
+
       </View>
     );
   }
@@ -59,6 +61,13 @@ var styles = StyleSheet.create({
   },
   margin: {
     marginBottom: 30
+  },
+  stocks: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 });
 
