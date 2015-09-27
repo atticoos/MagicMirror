@@ -112,7 +112,7 @@ var styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   weather: {
-    fontSize: Styles.fontSize.large - 20,
+    fontSize: Styles.fontSize.large - 0,
     color: '#fff'
   },
   superscript: {

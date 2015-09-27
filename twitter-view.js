@@ -47,7 +47,7 @@ var styles = StyleSheet.create({
   title: {
     marginRight: 15,
     color: '#fff',
-    fontSize: 36
+    fontSize: Styles.fontSize.medium
   },
   text: {
     color: '#fff',
