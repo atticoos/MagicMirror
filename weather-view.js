@@ -6,7 +6,8 @@ var React = require('react-native'),
 var {
   StyleSheet,
   View,
-  Text
+  Text,
+  Image
 } = React;
 
 function fetchWeatherReport () {
@@ -26,7 +27,7 @@ var WeatherView = React.createClass({
       var report = {
         now: {
           summary: weather.currently.summary,
-          icon: weather.currently.icon,
+          icon: weather.currently.icon.replace(/-/g, '_'),
           temperature: {
             f: parseInt(weather.currently.temperature),
             c: parseInt((weather.currently.temperature - 32) * (5/9))
@@ -34,7 +35,7 @@ var WeatherView = React.createClass({
         },
         today: {
           summary: weather.daily.data[0].summary,
-          icon: weather.daily.data[0].icon,
+          icon: weather.daily.data[0].icon.replace(/-/g, '_'),
           temperature: {
             high: {
               f: parseInt(weather.daily.data[0].temperatureMax),
@@ -59,25 +60,35 @@ var WeatherView = React.createClass({
     clearInterval(this.interval);
   },
   render: function () {
-    var weather = this.state.weather;
+    var weather = this.state.weather,
+        icon;
     if (weather) {
-
+      if (weather.today.icon) {
+        console.log('creating icon');
+        icon = (
+          <Image source={require('image!clear_day')} style={styles.icon} />
+        );
+      }
       return (
         <View style={styles.root}>
           <View style={styles.row}>
-            <Text style={styles.weather}>{weather.today.summary} </Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.weather}>Currently </Text>
-            <Text style={styles.weather}>{weather.now.temperature.f}</Text>
-            <Text style={styles.superscript}>F </Text>
-            <Text style={styles.weather}>({weather.now.temperature.c}</Text>
-            <Text style={styles.superscript}>C</Text>
-            <Text style={styles.weather}>) with a high of {weather.today.temperature.high.f}</Text>
-            <Text style={styles.superscript}>F </Text>
-            <Text style={styles.weather}>({weather.today.temperature.high.c}</Text>
-            <Text style={styles.superscript}>C</Text>
-            <Text style={styles.weather}>)</Text>
+            {icon}
+
+            <View style={styles.temperature}>
+              <Text style={styles.weather}>{weather.now.temperature.f}</Text>
+              <Text style={styles.superscript}>O</Text>
+              <Text style={styles.weather}>F ({weather.now.temperature.c}</Text>
+              <Text style={styles.superscript}>O</Text>
+              <Text style={styles.weather}>C)</Text>
+            </View>
+            <View style={styles.temperature}>
+              <Text style={styles.weather}> - </Text>
+              <Text style={styles.weather}>{weather.today.temperature.high.f}</Text>
+              <Text style={styles.superscript}>O</Text>
+              <Text style={styles.weather}>F({weather.today.temperature.high.c}</Text>
+              <Text style={styles.superscript}>O</Text>
+              <Text style={styles.weather}>C)</Text>
+            </View>
           </View>
         </View>
       );
@@ -96,11 +107,20 @@ var styles = StyleSheet.create({
   },
   row: {
     flex: 1,
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },
+  icon: {
+    width: 75,
+    height: 75
+  },
+  temperature: {
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
   weather: {
-    fontSize: Styles.fontSize.normal,
+    fontSize: Styles.fontSize.large - 20,
     color: '#fff'
   },
   superscript: {
