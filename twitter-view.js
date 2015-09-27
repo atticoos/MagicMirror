@@ -2,7 +2,7 @@
 var React = require('react-native'),
     Styles = require('./styles.js'),
     TweenState = require('react-tween-state'),
-    // Twitter = require('node-twitter'),
+    OAuthSimple = require('oauthsimple'),
     Config = require('./env.js');
 
 var {
@@ -12,43 +12,32 @@ var {
   Image
 } = React;
 
-var tweets = [{
-  text: '#Office365 calendar tip to help book your rooms. How to add #meetingroom calendars.',
-  user: '@Robinpowered'
-}, {
-  text: 'Congress does not regulate Wall Street; Wall Street regulates Congress. But the time has come to say enough is enough!',
-  user: '@BernieSanders'
-}, {
-  text: 'Spelling snafu? Press the up arrow (long press on mobile) to quickly edit your last message, and preserve your dignity. #SlackTips 😮👆',
-  user: '@SlackHQ'
-}];
-
 function getTweets () {
-  return new Promise(function (resolve, reject) {
-    // twitterClient.statusesUserTimeline({screen_name: 'atticoos'}, function (error, tweets) {
-    //   if (error) {
-    //     reject(error);
-    //   } else {
-    //     console.log('das tweets', tweets);
-    //     resolve(tweets);
-    //   }
-    // });
+  var authenticatedRequest = OAuthSimple(Config.twitter.consumer_key, Config.twitter.consumer_secret).sign({
+    path: 'https://api.twitter.com/1.1/statuses/user_timeline.json',
+    parameters: 'sreen_name=atticoos',
+    signatures: {
+      access_token: Config.twitter.access_token,
+      oauth_token_secret: Config.twitter.access_token_secret
+    }
+  });
+  return fetch(authenticatedRequest.signed_url).then(function (response) {
+    return response.json();
   });
 }
 
 var TwitterView = React.createClass({
   mixins: [TweenState.Mixin],
   getInitialState: function () {
-    return {tweet: 0};
+    return {tweets: [], tweet: 0};
   },
   rotate: function () {
     var next = this.state.tweet + 1;
-    console.log('state', this.state.tweet, next, tweets.length, tweets);
-    if (next === tweets.length) {
+    if (next === this.state.tweets.length) {
       next = 0;
     }
-    console.log('next tweet', next, tweets);
-    this.setState({tweet: next});
+    this.state.tweet = next;
+    this.setState(this.state);
     this.fade(1);
   },
   fade: function (fadeDirection) {
@@ -68,23 +57,32 @@ var TwitterView = React.createClass({
 
   },
   componentDidMount: function () {
-    getTweets();
-    setTimeout(this.fade.bind(this, 0), 1000);
+    getTweets().then(function (tweets) {
+      this.setState({tweets: tweets, tweet: 0});
+      this.fade(1);
+    }.bind(this));
   },
   render: function () {
-    var tweet = tweets[this.state.tweet];
+    var tweet = this.state.tweets[this.state.tweet],
+        tweetView;
+
+    if (tweet) {
+      tweetView = (
+        <View style={[styles.tweet, {opacity: this.getTweeningValue('opacity')}]}>
+          <Text style={styles.text}>{tweet.text}</Text>
+          <Text style={styles.text}>{tweet.user.screen_name}</Text>
+        </View>
+      );
+    } else {
+      tweetView = (<View></View>);
+    }
     return (
       <View style={styles.container}>
         <View style={styles.row}>
           <Text style={styles.title}>Latest Tweets</Text>
           <Image source={require('image!twitter')} style={styles.image} />
         </View>
-
-        <View style={[styles.tweet, {opacity: this.getTweeningValue('opacity')}]}>
-          <Text style={styles.text}>{tweet.text}</Text>
-          <Text style={styles.text}>{tweet.user}</Text>
-        </View>
-
+        {tweetView}
       </View>
     );
   }
@@ -108,11 +106,13 @@ var styles = StyleSheet.create({
     color: '#fff',
     fontSize: Styles.fontSize.medium
   },
+  tweet: {
+    opacity: 0
+  },
   text: {
     color: '#fff',
     fontSize: Styles.fontSize.small,
-    textAlign: 'right',
-    opacity: 1
+    textAlign: 'right'
   }
 });
 
