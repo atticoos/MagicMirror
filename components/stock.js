@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Styles = require('./styles.js');
+var Styles = require('../styles.js');
 var TweenState = require('react-tween-state');
 var _ = require('lodash');
 var {

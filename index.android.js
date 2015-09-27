@@ -15,13 +15,13 @@ var {
 
 var WINDOW_WIDTH = Dimensions.get('window').width;
 
-var DateView = require('./date-view'),
-    TimeView = require('./time-view'),
-    WeatherView = require('./weather-view'),
-    StockView = require('./stock-view'),
-    TwitterView = require('./twitter-view'),
-    GithubView = require('./github-view'),
-    CalendarView = require('./calendar-view');
+var DateView = require('./components/date'),
+    TimeView = require('./components/time'),
+    WeatherView = require('./components/weather'),
+    StockView = require('./components/stock'),
+    TwitterView = require('./components/twitter'),
+    GithubView = require('./components/github'),
+    CalendarView = require('./components/calendar');
 
 var MagicMirror = React.createClass({
   render: function() {

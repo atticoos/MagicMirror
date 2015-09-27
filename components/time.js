@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var moment = require('moment');
-var Styles = require('./styles.js');
+var Styles = require('../styles.js');
 var {
   StyleSheet,
   View,

@@ -1,9 +1,9 @@
 'use strict';
 var React = require('react-native'),
-    Styles = require('./styles.js'),
+    Styles = require('../styles.js'),
     TweenState = require('react-tween-state'),
     OAuthSimple = require('oauthsimple'),
-    Config = require('./env.js'),
+    Config = require('../env.js'),
     _ = require('lodash');
 
 var {

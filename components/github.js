@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var Styles = require('./styles.js');
-var Config = require('./env.js');
+var Styles = require('../styles.js');
+var Config = require('../env.js');
 var _ = require('lodash');
 var {
   StyleSheet,
