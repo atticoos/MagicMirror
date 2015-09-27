@@ -34,18 +34,7 @@ var WeatherView = React.createClass({
           }
         },
         today: {
-          summary: weather.daily.data[0].summary,
-          icon: weather.daily.data[0].icon.replace(/-/g, '_'),
-          temperature: {
-            high: {
-              f: parseInt(weather.daily.data[0].temperatureMax),
-              c: parseInt((weather.daily.data[0].temperatureMax - 32) * (5/9))
-            },
-            low: {
-              f: parseInt(weather.daily.data[0].temperatureMin),
-              c: parseInt((weather.daily.data[0].temperatureMin - 32) * (5/9))
-            }
-          }
+          // removed, may bring back later
         }
       }
       this.setState({weather: report});
@@ -63,7 +52,7 @@ var WeatherView = React.createClass({
     var weather = this.state.weather,
         icon;
     if (weather) {
-      if (weather.today.icon) {
+      if (weather.now.icon) {
         icon = (
           <Image source={require('image!clear_day')} style={styles.icon} />
         );
@@ -72,7 +61,6 @@ var WeatherView = React.createClass({
         <View style={styles.root}>
           <View style={styles.row}>
             {icon}
-
             <View style={styles.temperature}>
               <Text style={styles.weather}>{weather.now.temperature.f}</Text>
               <Text style={styles.superscript}>o</Text>
