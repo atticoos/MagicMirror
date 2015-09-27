@@ -3,7 +3,8 @@ var React = require('react-native'),
     Styles = require('./styles.js'),
     TweenState = require('react-tween-state'),
     OAuthSimple = require('oauthsimple'),
-    Config = require('./env.js');
+    Config = require('./env.js'),
+    _ = require('lodash');
 
 var {
   StyleSheet,
@@ -12,17 +13,28 @@ var {
   Image
 } = React;
 
-function getTweets () {
-  var authenticatedRequest = OAuthSimple(Config.twitter.consumer_key, Config.twitter.consumer_secret).sign({
-    path: 'https://api.twitter.com/1.1/statuses/user_timeline.json',
-    parameters: 'sreen_name=atticoos',
-    signatures: {
-      access_token: Config.twitter.access_token,
-      oauth_token_secret: Config.twitter.access_token_secret
-    }
+function getTweets (users) {
+  var promises = [];
+  function createAuthenticatedRequest(user) {
+    return OAuthSimple(Config.twitter.consumer_key, Config.twitter.consumer_secret).sign({
+      path: 'https://api.twitter.com/1.1/statuses/user_timeline.json',
+      parameters: 'screen_name=' + user + '&count=2&exclude_replies=true',
+      signatures: {
+        access_token: Config.twitter.access_token,
+        oauth_token_secret: Config.twitter.access_token_secret
+      }
+    });
+  }
+
+  promises = _.map(users, function (user) {
+    var authenticatedRequest = createAuthenticatedRequest(user);
+    return fetch(authenticatedRequest.signed_url).then(function (response) {
+      return response.json();
+    })
   });
-  return fetch(authenticatedRequest.signed_url).then(function (response) {
-    return response.json();
+
+  return Promise.all(promises).then(function (results) {
+    return _.flatten(results);
   });
 }
 
@@ -57,7 +69,7 @@ var TwitterView = React.createClass({
 
   },
   componentDidMount: function () {
-    getTweets().then(function (tweets) {
+    getTweets(this.props.users).then(function (tweets) {
       this.setState({tweets: tweets, tweet: 0});
       this.fade(1);
     }.bind(this));
@@ -68,7 +80,7 @@ var TwitterView = React.createClass({
 
     if (tweet) {
       tweetView = (
-        <View style={[styles.tweet, {opacity: this.getTweeningValue('opacity')}]}>
+        <View style={[styles.tweet, {opacity: this.getTweeningValue('opacity')}]} key={'tweet' + tweet.id}>
           <Text style={styles.text}>{tweet.text}</Text>
           <Text style={styles.text}>{tweet.user.screen_name}</Text>
         </View>
