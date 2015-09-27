@@ -75,9 +75,9 @@ var WeatherView = React.createClass({
 
             <View style={styles.temperature}>
               <Text style={styles.weather}>{weather.now.temperature.f}</Text>
-              <Text style={styles.superscript}>O</Text>
+              <Text style={styles.superscript}>o</Text>
               <Text style={styles.weather}>F ({weather.now.temperature.c}</Text>
-              <Text style={styles.superscript}>O</Text>
+              <Text style={styles.superscript}>o</Text>
               <Text style={styles.weather}>C)</Text>
             </View>
           </View>
@@ -115,7 +115,7 @@ var styles = StyleSheet.create({
     color: '#fff'
   },
   superscript: {
-    fontSize: Styles.fontSize.normal - 10,
+    fontSize: Styles.fontSize.normal,
     color: '#fff'
   }
 });

@@ -63,14 +63,19 @@ var StockView = React.createClass({
     var elements;
     if (stocks) {
       elements = _.map(stocks, function (stock, index) {
+        var color = stock.Change > 0 ? Styles.colors.green : Styles.colors.red;
         return (
           <View style={styles.quote} key={index}>
-            <Text style={styles.text}>
-              {stock.Symbol} {stock.Change.toFixed(2)}
-            </Text>
+            <Text style={styles.text}>{stock.Symbol} </Text>
+            <Text style={[styles.text, {color: color}]}>{Math.abs(stock.Change).toFixed(2)}</Text>
           </View>
         );
       });
+      for (var i = elements.length; i > 0; i--) {
+        elements.splice(i, 0, (
+            <Text style={styles.separator}>-</Text>
+        ));
+      }
       return (
         <View
           ref="slider"
@@ -91,14 +96,21 @@ var styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignItems: 'center',
     left: 0
   },
   quote: {
-    marginRight: 15
+    marginRight: 15,
+    flexDirection: 'row'
   },
   text: {
     color: '#fff',
     fontSize: Styles.fontSize.normal
+  },
+  separator: {
+    color: '#fff',
+    fontSize: 20,
+    marginRight: 15
   }
 });
 
