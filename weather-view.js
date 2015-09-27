@@ -53,7 +53,7 @@ var WeatherView = React.createClass({
   componentDidMount: function () {
     // fetch weather information
     this.updateWeather();
-    setInterval(this.updateWeather, 1000 * 60);
+    setInterval(this.updateWeather, 1000 * 60 * 60); // 1 hour updates
   },
   componentWillUnmount: function () {
     clearInterval(this.interval);
