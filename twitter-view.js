@@ -50,6 +50,7 @@ var TwitterView = React.createClass({
         }
       }.bind(this)
     });
+    
   },
   componentDidMount: function () {
     setTimeout(this.fade.bind(this, 0), 1000);

@@ -20,6 +20,15 @@ var GithubView = React.createClass({
           <Text style={styles.title}>3 Work Notifications</Text>
           <Image source={require('image!github')} style={styles.image} />
         </View>
+        <View style={styles.row}>
+          <Text style={styles.notification}>robin-dashboard#2306 Feature - Shareable Models</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.notification}>robin-dashboard#2298 Chore - Angular 1.4.4</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.notification}>robinpowered/robin-dashboard#2319  Bugfix - Set Access Token</Text>
+        </View>
       </View>
     );
   }
@@ -48,6 +57,10 @@ var styles = StyleSheet.create({
     color: '#fff',
     fontSize: 24,
     textAlign: 'right'
+  },
+  notification: {
+    color: '#fff',
+    fontSize: Styles.fontSize.small
   }
 });
 
