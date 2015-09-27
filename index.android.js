@@ -10,7 +10,10 @@ var {
   StyleSheet,
   Text,
   View,
+  Dimensions
 } = React;
+
+var WINDOW_WIDTH = Dimensions.get('window').width;
 
 var DateView = require('./date-view'),
     TimeView = require('./time-view'),
@@ -28,7 +31,7 @@ var MagicMirror = React.createClass({
         <View style={styles.row}>
           <DateView></DateView>
         </View>
-        <View style={[styles.row, {marginTop: -10}]}>
+        <View style={styles.row}>
           <TimeView></TimeView>
         </View>
         <View style={[styles.row, styles.margin, {marginTop: -10}]}>
@@ -45,7 +48,7 @@ var MagicMirror = React.createClass({
         </View>
 
         <View style={styles.stocks}>
-          <StockView symbols={stocks}></StockView>
+          <StockView style={{width: '100%'}} symbols={stocks}></StockView>
         </View>
 
       </View>

@@ -42,7 +42,7 @@ var StockView = React.createClass({
         this.tweenState('left', {
           easing: TweenState.easingTypes.linear,
           duration: this.state.stocks.length * 1000,
-          endValue: endValue,
+          endValue: -endValue,
           onEnd: function () {
             setTimeout(this.animateStocks.bind(this, direction === 'right' ? 'left' : 'right'), 1000);
           }.bind(this)
@@ -71,7 +71,7 @@ var StockView = React.createClass({
           </View>
         );
       });
-      for (var i = elements.length; i > 0; i--) {
+      for (var i = elements.length-1; i > 0; i--) {
         elements.splice(i, 0, (
             <Text style={styles.separator}>-</Text>
         ));
@@ -97,7 +97,9 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    left: 0
+    left: 0,
+    bottom: 0,
+    position: 'absolute'
   },
   quote: {
     marginRight: 15,
