@@ -9,6 +9,12 @@ var {
   Text
 } = React;
 
+function getOrdinal (day) {
+  var ordinals = ['th', 'st', 'nd', 'rd'],
+      modulus = day%100;
+  return day + (ordinals[modulus - 20]%10) || ordinals[modulus] || ordinals[0];
+}
+
 var DateView = React.createClass({
   getInitialState: function () {
     return {date: moment()};
@@ -23,17 +29,28 @@ var DateView = React.createClass({
     clearInterval(this.interval);
   },
   render: function () {
-    var date = this.state.date.format('MMMM D, YYYY');
+    var date = this.state.date.format('dddd, MMMM D'),
+        ordinal = this.state.date.format('');
     return (
-      <Text style={styles.date}>{date}</Text>
+      <View style={styles.row}>
+        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.ordinal}>{getOrdinal(this.state.date.day())}</Text>
+      </View>
     );
   }
 });
 
 var styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row'
+  },
   date: {
     fontSize: Styles.fontSize.normal,
     color: '#fff'
+  },
+  ordinal: {
+    color: '#fff',
+    fontSize: Styles.fontSize.normal-10
   }
 });
 
