@@ -30,3 +30,6 @@ npm-debug.log
 # Android
 android/.gradle
 android/build
+
+#project
+env.js

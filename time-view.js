@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var moment = require('moment');
+var Styles = require('./styles.js');
 var {
   StyleSheet,
   View,
@@ -31,7 +32,7 @@ var TimeView = React.createClass({
 
 var styles = StyleSheet.create({
   time: {
-    fontSize: 64,
+    fontSize: Styles.fontSize.large,
     color: '#fff'
   }
 });

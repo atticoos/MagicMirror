@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native'),
-    moment = require('moment');
+    moment = require('moment'),
+    Styles = require('./styles.js');
 var {
   StyleSheet,
   View,
@@ -31,7 +32,7 @@ var DateView = React.createClass({
 
 var styles = StyleSheet.create({
   date: {
-    fontSize: 32,
+    fontSize: Styles.fontSize.normal,
     color: '#fff'
   }
 });
