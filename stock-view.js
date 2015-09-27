@@ -9,9 +9,8 @@ var {
   Text
 } = React;
 
-function fetchStockQuotes () {
+function fetchStockQuotes (symbols) {
   var endpoint = 'http://dev.markitondemand.com/Api/v2/Quote/json?symbol=',
-      symbols = ['AAPL', 'GOOG'],
       promises = _.map(symbols, function (symbol) {
         return fetch(endpoint + symbol).then(function (result) {
           return result.json();
@@ -25,7 +24,7 @@ var StockView = React.createClass({
     return {stocks: null};
   },
   updateStocks: function () {
-    fetchStockQuotes().then(function (stocks) {
+    fetchStockQuotes(this.props.symbols).then(function (stocks) {
       this.setState({stocks: stocks});
     }.bind(this));
   },
@@ -65,7 +64,7 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   quote: {
-    marginRight: 10
+    marginRight: 15
   },
   text: {
     color: '#fff',

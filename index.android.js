@@ -19,6 +19,7 @@ var DateView = require('./date-view'),
 
 var MagicMirror = React.createClass({
   render: function() {
+    var stocks = ['FB', 'TWTR', 'AAPL', 'GOOGL', 'MSFT', 'TSLA'];
     return (
       <View style={styles.container}>
         <View style={styles.row}>
@@ -31,7 +32,7 @@ var MagicMirror = React.createClass({
           <WeatherView></WeatherView>
         </View>
         <View style={styles.row}>
-          <StockView></StockView>
+          <StockView symbols={stocks}></StockView>
         </View>
       </View>
     );
