@@ -12,4 +12,7 @@ More details to come!
 }
 ```
 
-![12047102_10205014574904446_1342070211129818773_n](https://cloud.githubusercontent.com/assets/656630/10120719/14c30c3c-6499-11e5-8e10-a0efb6831093.jpg)
+![slack for ios upload-1](https://cloud.githubusercontent.com/assets/656630/10124734/69f7050a-652a-11e5-8fa5-b6368a38d665.jpg)
+
+
+<img width="300" alt="screen shot 2015-09-27 at 12 37 49 pm" src="https://cloud.githubusercontent.com/assets/656630/10124725/3a2a5e8a-652a-11e5-97a2-756ba0646ae3.png">

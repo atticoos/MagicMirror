@@ -1,7 +1,9 @@
 'use strict';
 var React = require('react-native'),
     Styles = require('./styles.js'),
-    TweenState = require('react-tween-state');
+    TweenState = require('react-tween-state'),
+    // Twitter = require('node-twitter'),
+    Config = require('./env.js');
 
 var {
   StyleSheet,
@@ -20,6 +22,19 @@ var tweets = [{
   text: 'Spelling snafu? Press the up arrow (long press on mobile) to quickly edit your last message, and preserve your dignity. #SlackTips 😮👆',
   user: '@SlackHQ'
 }];
+
+function getTweets () {
+  return new Promise(function (resolve, reject) {
+    // twitterClient.statusesUserTimeline({screen_name: 'atticoos'}, function (error, tweets) {
+    //   if (error) {
+    //     reject(error);
+    //   } else {
+    //     console.log('das tweets', tweets);
+    //     resolve(tweets);
+    //   }
+    // });
+  });
+}
 
 var TwitterView = React.createClass({
   mixins: [TweenState.Mixin],
@@ -50,9 +65,10 @@ var TwitterView = React.createClass({
         }
       }.bind(this)
     });
-    
+
   },
   componentDidMount: function () {
+    getTweets();
     setTimeout(this.fade.bind(this, 0), 1000);
   },
   render: function () {
