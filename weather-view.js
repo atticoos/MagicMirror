@@ -64,7 +64,6 @@ var WeatherView = React.createClass({
         icon;
     if (weather) {
       if (weather.today.icon) {
-        console.log('creating icon');
         icon = (
           <Image source={require('image!clear_day')} style={styles.icon} />
         );
@@ -104,8 +103,8 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   icon: {
-    width: 75,
-    height: 75
+    width: 70,
+    height: 70
   },
   temperature: {
     flexDirection: 'row',
