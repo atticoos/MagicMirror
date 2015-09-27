@@ -15,7 +15,8 @@ var {
 var DateView = require('./date-view'),
     TimeView = require('./time-view'),
     WeatherView = require('./weather-view'),
-    StockView = require('./stock-view');
+    StockView = require('./stock-view'),
+    TwitterView = require('./twitter-view');
 
 var MagicMirror = React.createClass({
   render: function() {
@@ -28,11 +29,14 @@ var MagicMirror = React.createClass({
         <View style={styles.row}>
           <TimeView></TimeView>
         </View>
-        <View style={[styles.row, styles.weather]}>
+        <View style={[styles.row, styles.margin]}>
           <WeatherView></WeatherView>
         </View>
-        <View style={styles.row}>
+        <View style={styles.row, styles.margin}>
           <StockView symbols={stocks}></StockView>
+        </View>
+        <View style={styles.row}>
+          <TwitterView></TwitterView>
         </View>
       </View>
     );
@@ -49,7 +53,7 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 0
   },
-  weather: {
+  margin: {
     marginBottom: 20
   }
 });
