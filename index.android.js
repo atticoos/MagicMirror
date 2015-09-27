@@ -28,7 +28,7 @@ var MagicMirror = React.createClass({
         <View style={styles.row}>
           <TimeView></TimeView>
         </View>
-        <View style={styles.row}>
+        <View style={[styles.row, styles.weather]}>
           <WeatherView></WeatherView>
         </View>
         <View style={styles.row}>
@@ -47,7 +47,10 @@ var styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 10
+    marginBottom: 0
+  },
+  weather: {
+    marginBottom: 20
   }
 });
 
