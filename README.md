@@ -1,6 +1,8 @@
 # Magic Mirror
 
-More details to come!
+Turn your old tablets into a smart mirror display!
+
+Inspired by [HannahMitt/HomeMirror](https://github.com/HannahMitt/HomeMirror)
 
 ### Environment Configuration
 `env.js` must be defined in the root of the project with the following keys
