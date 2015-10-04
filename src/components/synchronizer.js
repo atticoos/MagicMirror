@@ -9,11 +9,8 @@ function getSha () {
 }
 
 function synchronize () {
-  console.log('syncing');
   return getSha().then(function (sha) {
-    console.log('currentsha', currentSha, 'newSha', sha, 'diff?', currentSha !== sha);
     if (currentSha !== sha) {
-      console.log('redirecting');
       window.location = '/';
     }
   });
@@ -22,7 +19,6 @@ function synchronize () {
 module.exports = {
   start: function () {
     getSha().then(function (sha) {
-      console.log('starting')
       currentSha = sha;
       setInterval(synchronize, 10000);
     });

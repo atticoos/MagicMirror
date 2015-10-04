@@ -6,7 +6,7 @@ app.use(express.static('dist'));
 
 app.get('/sha', function (req, res) {
   exec('git rev-parse HEAD', function (error, stdout) {
-    res.json({data: stdout.toString()});
+    res.json({sha: stdout.toString()});
   });
 });
 
