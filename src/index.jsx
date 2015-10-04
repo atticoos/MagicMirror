@@ -1,9 +1,25 @@
 'use strict';
 
 var React = require('react'),
-    Hello = require('./components/hello'),
+    Time = require('./components/hello.jsx'),
+    Date = require('./components/date.jsx'),
     Syncrhonizer = require('./components/synchronizer');
 
 Syncrhonizer.start();
 
-React.render(<Hello />, document.getElementById('content'));
+var Main = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <div class="row">
+          <Date />
+        </div>
+        <div class="row">
+          <Time />
+        </div>
+      </div>
+    );
+  }
+})
+
+React.render(<Main />, document.getElementById('content'));
