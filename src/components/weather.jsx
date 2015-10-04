@@ -38,6 +38,7 @@ module.exports = React.createClass({
     }
     return (
       <div className="weather">
+        <span className={'icon icon-' + weather.currently.icon}></span>
         <span className="temperature">
           {parseInt(weather.currently.temperature)}
           <span className="super">o</span>

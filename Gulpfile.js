@@ -11,6 +11,11 @@ gulp.task('less', function () {
   .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('font', function () {
+  gulp.src('src/less/fonts/*')
+  .pipe(gulp.dest('dist/fonts'));
+});
+
 gulp.task('browserify', function () {
   gulp.src('src/index.jsx')
   .pipe(browserify({
