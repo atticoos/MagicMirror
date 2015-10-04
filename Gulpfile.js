@@ -44,7 +44,7 @@ gulp.task('html', function () {
 })
 
 gulp.task('js', ['browserify', 'vendor']);
-gulp.task('build', ['js', 'less', 'html']);
+gulp.task('build', ['js', 'less', 'html', 'font']);
 
 gulp.task('watch', ['build'], function () {
   gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['browserify']);
