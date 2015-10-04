@@ -1,11 +1,26 @@
 @import 'font.less';
 
 @large: 60px;
+@medium: 36px;
+
 body {
   background-color: #000;
   color: #fff;
   text-align: right;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: @large;
+  font-weight: normal;
+  margin: 0;
+}
+h2 {
+  font-size: @medium;
+  font-weight: normal;
+  margin: 0;
 }
 
 .clock {
@@ -29,6 +44,23 @@ body {
     .super {
       font-size: 32px;
       vertical-align: top;
+    }
+  }
+}
+
+.tweets {
+  .tweet {
+    position: relative;
+    div {
+      transition: 2s all;
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: 0;
+      &.active {
+        transition-delay: 1.5s;
+        opacity: 1;
+      }
     }
   }
 }
