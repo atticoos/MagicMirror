@@ -19,21 +19,33 @@ class Main extends React.Component {
       'elonmusk'
     ];
     return (
-      <div>
-        <div class="row">
-          <DateComponent />
+      <div className="root">
+        <div className="widget-area top left">
+          <div className="row">
+            <WeatherComponent />
+          </div>
         </div>
-        <div class="row">
-          <TimeComponent />
+
+        <div className="widget-area top right">
+          <div className="row">
+            <DateComponent />
+          </div>
+          <div className="row">
+            <TimeComponent />
+          </div>
         </div>
-        <div class="row">
-          <WeatherComponent />
+
+        <div className="widget-area bottom left">
+
         </div>
-        <div class="row">
-          <TwitterComponent screennames={twitterScreennames}></TwitterComponent>
-        </div>
-        <div class="row">
-          <GithubComponent></GithubComponent>
+
+        <div className="widget-area bottom right">
+          <div className="row">
+            <TwitterComponent screennames={twitterScreennames}></TwitterComponent>
+          </div>
+          <div className="row">
+            <GithubComponent></GithubComponent>
+          </div>
         </div>
       </div>
     );
