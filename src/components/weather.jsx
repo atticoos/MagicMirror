@@ -47,11 +47,9 @@ module.exports = React.createClass({
 
 
         <span className="temperature">
-          (
-          {getCelcius(weather.currently.temperature)}
+          ({getCelcius(weather.currently.temperature)}
           <span className="super">o</span>
-          C
-          )
+          C)
         </span>
       </div>
     );
