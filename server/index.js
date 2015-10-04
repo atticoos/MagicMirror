@@ -51,6 +51,20 @@ app.get('/tweets', function (req, res) {
   .then(res.json.bind(res));
 });
 
+app.get('/github', function (req, res) {
+  var options = {
+    url: 'https://api.github.com/notifications?access_token=' + Config.github.access_token,
+    headers: {
+      'User-Agent': 'Magic-Mirror-App'
+    }
+  };
+  request(options).spread(function (response, body) {
+    res.json(JSON.parse(body));
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
 app.listen(8090, function () {
   console.log('running');
 });

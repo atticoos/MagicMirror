@@ -23,6 +23,7 @@
     "gulp-autoprefixer": "^3.0.2",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
+    "gulp-express": "^0.3.5",
     "gulp-less": "^3.0.3",
     "gulp-rename": "^1.2.2",
     "jsx-loader": "^0.13.2",

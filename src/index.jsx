@@ -5,6 +5,7 @@ import TimeComponent from './components/time.jsx';
 import DateComponent from './components/date.jsx';
 import WeatherComponent from './components/weather.jsx';
 import TwitterComponent from './components/twitter.jsx';
+import GithubComponent from './components/github.jsx';
 import Syncrhonizer from './components/synchronizer.js';
 
 Syncrhonizer.start();
@@ -30,6 +31,9 @@ class Main extends React.Component {
         </div>
         <div class="row">
           <TwitterComponent screennames={twitterScreennames}></TwitterComponent>
+        </div>
+        <div class="row">
+          <GithubComponent></GithubComponent>
         </div>
       </div>
     );
