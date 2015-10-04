@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('React'),
+var React = require('react'),
     moment = require('moment');
 
 module.exports = React.createClass({

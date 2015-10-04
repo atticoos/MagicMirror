@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('React'),
+var React = require('react'),
     Hello = require('./components/hello');
 
 console.log('wtf', document.getElementById('content'));
