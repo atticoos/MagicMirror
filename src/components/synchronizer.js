@@ -10,10 +10,11 @@ function getSha () {
 
 function synchronize () {
   return getSha().then(function (sha) {
+    var content = document.querySelector('#content');
     if (currentSha !== sha) {
       window.location = '/';
     }
-  });
+  })
 }
 
 module.exports = {

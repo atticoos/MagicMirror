@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "webpack --progress --colors --port 8090 --content-base src/ && gulp build && cp src/index.html dist/ && node server"
+    "dev": "webpack --progress --colors --port 8090 --content-base src/ && gulp build && cp src/index.html dist/ && cp bower_components/fetch/fetch.js dist/ && cp bower_components/promise-polyfill/Promise.js dist/ && node server"
   },
   "dependencies": {
     "express": "^4.13.3",
