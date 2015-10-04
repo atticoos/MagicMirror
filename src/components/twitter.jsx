@@ -60,7 +60,7 @@ class TwitterComponent extends React.Component {
 
     return (
       <div className="tweets">
-        <h2>Latest Tweets</h2>
+        <h2>Latest Tweets <i className="fa fa-twitter"></i></h2>
         <div className="tweet">
         {{tweetElements}}
         </div>
