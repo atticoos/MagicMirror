@@ -2,11 +2,25 @@
   "name": "MagicMirror",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "dev": "webpack --progress --colors --port 8090 --content-base src/ && gulp build && cp src/index.html dist/ && node server"
+  },
   "dependencies": {
+    "express": "^4.13.3",
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
+    "react": "^0.13.3"
   },
   "engines": {
     "node": ">=4.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "jsx-loader": "^0.13.2",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.1",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
   }
 }
