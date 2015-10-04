@@ -16,10 +16,14 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
     "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
     "jsx-loader": "^0.13.2",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
+    "reactify": "^1.1.1",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   }
