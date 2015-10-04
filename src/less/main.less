@@ -1,12 +1,11 @@
 @import 'font.less';
 
-@large: 60px;
-@medium: 36px;
+@large: 56px;
+@medium: 34px;
 
 body {
   background-color: #000;
   color: #fff;
-  text-align: right;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
@@ -37,6 +36,7 @@ h2 {
 }
 .widget-area {
   position: absolute;
+  width: 400px;
   &.top {
     top: 0;
   }
@@ -45,9 +45,11 @@ h2 {
   }
   &.left {
     left: 0;
+    text-align: left;
   }
   &.right {
     right: 0;
+    text-align: right;
   }
 }
 
@@ -65,13 +67,35 @@ h2 {
 }
 
 .weather {
-  font-size: @large;
-
   .temperature {
     margin-left: 15px;
     .super {
       font-size: 32px;
       vertical-align: top;
+    }
+  }
+
+  .forecast {
+    font-size: 20px;
+    .item {
+      div {
+        display: inline-block;
+        margin-right: 15px;
+      }
+      .icon {
+        width: 90px;
+        text-align: center;
+        font-size: 26px;
+      }
+      .day {
+        width: 120px;
+      }
+      .temp {
+        width: 110px;
+        .super {
+          font-size: 12px;
+        }
+      }
     }
   }
 }

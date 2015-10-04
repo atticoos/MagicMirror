@@ -3,6 +3,7 @@ const INTERVAL = 60 * 15 * 1000; // 15 minutes
 
 import React from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 
 function getWeather () {
   return fetch('/weather').then(function (response) {
@@ -37,26 +38,63 @@ class Weather extends React.Component {
     clearInterval(this.interval);
   }
 
+  renderForecast (forecast) {
+    return _.map(this.state.weather.daily.data, function (day) {
+      return (
+        <div key={day.time} className="item">
+          <div className="icon">
+            <span className={'icon-' + day.icon}></span>
+          </div>
+          <div className="day">
+            {moment.unix(day.time).format('dddd')}
+          </div>
+          <div className="temp">
+            <span className="temperature">
+              {parseInt(day.temperatureMax)}
+              <span className="super">o</span>
+              F
+            </span>
+
+
+            <span className="temperature">
+              ({getCelcius(day.temperatureMax)}
+              <span className="super">o</span>
+              C)
+            </span>
+          </div>
+        </div>
+      );
+    });
+  }
+
   render () {
     var weather = this.state.weather;
     if (!weather) {
       return <div></div>;
     }
+
     return (
       <div className="weather">
-        <span className={'icon icon-' + weather.currently.icon}></span>
-        <span className="temperature">
-          {parseInt(weather.currently.temperature)}
-          <span className="super">o</span>
-          F
-        </span>
+        <div className="now">
+          <h1>
+            <span className={'icon icon-' + weather.currently.icon}></span>
+            <span className="temperature">
+              {parseInt(weather.currently.temperature)}
+              <span className="super">o</span>
+              F
+            </span>
 
 
-        <span className="temperature">
-          ({getCelcius(weather.currently.temperature)}
-          <span className="super">o</span>
-          C)
-        </span>
+            <span className="temperature">
+              ({getCelcius(weather.currently.temperature)}
+              <span className="super">o</span>
+              C)
+            </span>
+          </h1>
+        </div>
+        <div className="forecast">
+          {this.renderForecast()}
+        </div>
       </div>
     );
   }
