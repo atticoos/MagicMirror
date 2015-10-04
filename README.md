@@ -17,7 +17,7 @@ Inspired by [HannahMitt/HomeMirror](https://github.com/HannahMitt/HomeMirror)
   "twitter": {
     "consumer_key": "",
     "consumer_token": "",
-    "access_token": "",
+    "access_token_key": "",
     "access_token_secret": ""
   }
 }

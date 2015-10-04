@@ -2,7 +2,9 @@ var express = require('express');
 var exec = require('child_process').exec;
 var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
+var Twitter = require('twitter');
 var Config = require('../env.js');
+var _ = require('lodash');
 var app = express();
 
 app.use(express.static('dist'));
@@ -19,6 +21,34 @@ app.get('/weather', function (req, res) {
   request(endpoint).spread(function (response, body) {
     res.json(JSON.parse(body));
   });
+});
+
+app.get('/tweets', function (req, res) {
+  var twitter = new Twitter(Config.twitter),
+      screennames = req.query.screennames.split(',');
+
+  function getTweets (screenname) {
+    return new Promise(function (resolve, reject) {
+      twitter.get('statuses/user_timeline', {
+        screenname: screenname,
+        count: 3
+      }, function (error, tweets) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(tweets);
+        }
+      });
+    });
+  }
+
+  var requests = _.map(screennames, function (screenname) {
+    return getTweets(screenname);
+  });
+
+  Promise.all(requests)
+  .then(_.flatten)
+  .then(res.json.bind(res));
 });
 
 app.listen(8090, function () {
