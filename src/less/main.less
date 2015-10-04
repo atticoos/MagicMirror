@@ -1,3 +1,4 @@
+@large: 60px;
 body {
   background-color: #000;
   color: #fff;
@@ -5,7 +6,7 @@ body {
 }
 
 .clock {
-  font-size: 60px;
+  font-size: @large;
   .meridian {
     vertical-align: top;
     font-size: 32px;
@@ -16,4 +17,8 @@ body {
 
 .date {
   font-size: 26px;
+}
+
+.weather {
+  font-size: @large;
 }

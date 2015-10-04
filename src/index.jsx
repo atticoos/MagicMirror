@@ -1,8 +1,9 @@
 'use strict';
 
 var React = require('react'),
-    Time = require('./components/hello.jsx'),
-    Date = require('./components/date.jsx'),
+    TimeComponent = require('./components/time.jsx'),
+    DateComponent = require('./components/date.jsx'),
+    WeatherComponent = require('./components/weather.jsx'),
     Syncrhonizer = require('./components/synchronizer');
 
 Syncrhonizer.start();
@@ -12,10 +13,13 @@ var Main = React.createClass({
     return (
       <div>
         <div class="row">
-          <Date />
+          <DateComponent />
         </div>
         <div class="row">
-          <Time />
+          <TimeComponent />
+        </div>
+        <div class="row">
+          <WeatherComponent />
         </div>
       </div>
     );
