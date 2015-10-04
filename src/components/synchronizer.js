@@ -11,6 +11,7 @@ function getSha () {
 function synchronize () {
   console.log('syncing');
   return getSha().then(function (sha) {
+    console.log('currentsha', currentSha, 'newSha', sha, 'diff?', currentSha !== sha);
     if (currentSha !== sha) {
       console.log('redirecting');
       window.location = '/';
