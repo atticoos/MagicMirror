@@ -18,7 +18,8 @@ module.exports = React.createClass({
     clearInterval(this.interval);
   },
   render: function () {
-    var now = this.state.time.format('h:mm:ss');
-    return <div className="clock">{now}</div>
+    var now = this.state.time.format('h:mm:ss'),
+        meridian = this.state.time.format('a');
+    return <div className="clock">{now}<span className="meridian">{meridian}</span></div>
   }
 });
