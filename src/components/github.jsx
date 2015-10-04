@@ -30,10 +30,9 @@ class GithubComponent extends React.Component {
     var notifications = this.state.notifications;
     var notificationElements = _.map(notifications, function (notification) {
       return (
-        <div key={notification.id}>
-          {notification.repository.full_name}
-          -
-          {notification.subject.title}
+        <div key={notification.id} className="notification">
+          <span className="repo">{notification.repository.full_name}</span>
+          <span className="title">{notification.subject.title}</span>
         </div>
       );
     });
@@ -41,7 +40,7 @@ class GithubComponent extends React.Component {
     return (
       <div className="github">
         <h2>Latest Work Notifications <i className="fa fa-github"></i></h2>
-        <div class="notification">
+        <div className="notifications">
           {notificationElements}
         </div>
       </div>
