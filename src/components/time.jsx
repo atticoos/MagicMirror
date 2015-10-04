@@ -1,25 +1,35 @@
 'use strict';
 
-var React = require('react'),
-    moment = require('moment');
+import React from 'react';
+import moment from 'moment';
 
-module.exports = React.createClass({
-  displayName: 'helo',
-  getInitialState: function () {
-    return {time: moment()};
-  },
-  tick: function () {
+class Time extends React.Component {
+  constructor () {
+    super();
+    this.displayName = 'time';
+    this.state = {time: moment()};
+  }
+
+  tick () {
     this.setState({time: moment()});
-  },
-  componentDidMount: function () {
-    this.interval = setInterval(this.tick, 1000);
-  },
-  componentDidUnmount: function () {
+  }
+
+  componentDidMount () {
+    this.interval = setInterval(this.tick.bind(this), 1000);
+  }
+
+  componentDidUnmount () {
     clearInterval(this.interval);
-  },
-  render: function () {
+  }
+
+  render () {
+    if (!this.state.time) {
+      return <div></div>;
+    }
     var now = this.state.time.format('h:mm:ss'),
         meridian = this.state.time.format('a');
     return <div className="clock">{now}<span className="meridian">{meridian}</span></div>
   }
-});
+}
+
+export default Time;

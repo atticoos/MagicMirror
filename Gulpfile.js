@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
     reactify = require('reactify'),
+    babelify = require('babelify'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     browserify = require('gulp-browserify');
@@ -19,7 +20,7 @@ gulp.task('font', function () {
 gulp.task('browserify', function () {
   gulp.src('src/index.jsx')
   .pipe(browserify({
-    transform: [reactify],
+    transform: [babelify],
     insertGlobals: true
   }))
   .pipe(rename('bundle.js'))

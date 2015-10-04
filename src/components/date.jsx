@@ -1,24 +1,34 @@
 'use strict';
 
-var React = require('react'),
-    moment = require('moment');
+import React from 'react';
+import moment from 'moment';
 
-module.exports = React.createClass({
-  displayName: 'date',
-  getInitialState: function () {
-    return {time: moment()};
-  },
-  tick: function () {
-    this.setState({time: moment()});
-  },
-  componentDidMount: function () {
-    this.interval = setInterval(this.tick, 1000);
-  },
-  componentDidUnmount: function () {
-    clearInterval(this.interval);
-  },
-  render: function () {
-    var now = this.state.time.format('dddd, MMMM D');
-    return <div className="date">{now}</div>
+class Date extends React.Component {
+  constructor () {
+    super();
+    this.displayName = 'date';
+    this.state = {time: moment()};
   }
-});
+
+  tick () {
+    this.setState({time: moment()});
+  }
+
+  componentDidMount () {
+    this.interval = setInterval(this.tick.bind(this), 1000);
+  }
+
+  componentDidUnmount () {
+    clearInterval(this.interval);
+  }
+
+  render () {
+    if (!this.state.time) {
+      return <div></div>;
+    }
+    var now = this.state.time.format('dddd, MMMM D');
+    return <div className="date">{now}</div>;
+  }
+}
+
+export default Date;

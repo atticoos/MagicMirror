@@ -1,7 +1,8 @@
 'use strict';
-var INTERVAL = 60 * 15 * 1000; // 15 minutes
-var React = require('react'),
-    moment = require('moment');
+const INTERVAL = 60 * 15 * 1000; // 15 minutes
+
+import React from 'react';
+import moment from 'moment';
 
 function getWeather () {
   return fetch('/weather').then(function (response) {
@@ -13,25 +14,30 @@ function getCelcius (fahrenheit) {
   return parseInt((fahrenheit - 32) * (5/9))
 }
 
-module.exports = React.createClass({
-  displayName: 'weather',
-  getInitialState: function () {
-    return {weather: null};
-  },
-  updateWeather: function () {
+class Weather extends React.Component {
+  constructor () {
+    super();
+    this.displayName = 'weather';
+    this.state = {weather: null};
+  }
+
+  updateWeather () {
     return getWeather().then(function (weather) {
       this.setState({weather: weather});
     }.bind(this));
-  },
-  componentDidMount: function () {
+  }
+
+  componentDidMount () {
     this.updateWeather().then(function () {
-      this.interval = setInterval(this.updateWeather, INTERVAL);
+      this.interval = setInterval(this.updateWeather.bind(this), INTERVAL);
     }.bind(this));
-  },
-  componentDidUnmount: function () {
+  }
+
+  componentDidUnmount () {
     clearInterval(this.interval);
-  },
-  render: function () {
+  }
+
+  render () {
     var weather = this.state.weather;
     if (!weather) {
       return <div></div>;
@@ -54,4 +60,6 @@ module.exports = React.createClass({
       </div>
     );
   }
-});
+}
+
+export default Weather;

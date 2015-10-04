@@ -18,6 +18,7 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
+    "babelify": "^6.3.0",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",

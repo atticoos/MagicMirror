@@ -17,11 +17,13 @@ function synchronize () {
   })
 }
 
-module.exports = {
+var service = {
   start: function () {
     getSha().then(function (sha) {
       currentSha = sha;
       setInterval(synchronize, 10000);
     });
   }
-};
+}
+
+export default service;

@@ -1,15 +1,22 @@
 'use strict';
 
-var React = require('react'),
-    TimeComponent = require('./components/time.jsx'),
-    DateComponent = require('./components/date.jsx'),
-    WeatherComponent = require('./components/weather.jsx'),
-    Syncrhonizer = require('./components/synchronizer');
+import React from 'react';
+import TimeComponent from './components/time.jsx';
+import DateComponent from './components/date.jsx';
+import WeatherComponent from './components/weather.jsx';
+import TwitterComponent from './components/twitter.jsx';
+import Syncrhonizer from './components/synchronizer.js';
 
 Syncrhonizer.start();
 
-var Main = React.createClass({
-  render: function () {
+class Main extends React.Component {
+  render () {
+    var twitterScreennames = [
+      'atticoos',
+      'robinpowered',
+      'berniesanders',
+      'elonmusk'
+    ];
     return (
       <div>
         <div class="row">
@@ -21,9 +28,12 @@ var Main = React.createClass({
         <div class="row">
           <WeatherComponent />
         </div>
+        <div class="row">
+          <TwitterComponent screennames={twitterScreennames}></TwitterComponent>
+        </div>
       </div>
     );
   }
-})
+}
 
 React.render(<Main />, document.getElementById('content'));
