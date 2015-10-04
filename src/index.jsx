@@ -1,7 +1,9 @@
 'use strict';
 
 var React = require('react'),
-    Hello = require('./components/hello');
+    Hello = require('./components/hello'),
+    Syncrhonizer = require('./components/synchronizer');
 
-console.log('wtf', document.getElementById('content'));
+Syncrhonizer.start();
+
 React.render(<Hello />, document.getElementById('content'));
