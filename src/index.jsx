@@ -20,11 +20,7 @@ class Main extends React.Component {
     ];
     return (
       <div className="root">
-        <div className="widget-area top left">
-          <div className="row">
-            <WeatherComponent />
-          </div>
-        </div>
+        <div className="widget-area top left"></div>
 
         <div className="widget-area top right">
           <div className="row">
@@ -36,7 +32,9 @@ class Main extends React.Component {
         </div>
 
         <div className="widget-area bottom left">
-
+          <div className="row">
+            <WeatherComponent />
+          </div>
         </div>
 
         <div className="widget-area bottom right">
