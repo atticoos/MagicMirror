@@ -19,6 +19,6 @@ module.exports = React.createClass({
   },
   render: function () {
     var now = this.state.time.format('h:mm:ss');
-    return <div className="clock">Test {now}</div>
+    return <div className="clock">{now}</div>
   }
 });
