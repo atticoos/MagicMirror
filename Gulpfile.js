@@ -4,11 +4,13 @@ var gulp = require('gulp'),
     babelify = require('babelify'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
+    autoprefixer = require('gulp-autoprefixer'),
     browserify = require('gulp-browserify');
 
 gulp.task('less', function () {
   gulp.src('src/less/main.less')
   .pipe(less())
+  .pipe(autoprefixer())
   .pipe(gulp.dest('dist/'));
 });
 

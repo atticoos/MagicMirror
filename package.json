@@ -20,6 +20,7 @@
   "devDependencies": {
     "babelify": "^6.3.0",
     "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
     "gulp-less": "^3.0.3",
