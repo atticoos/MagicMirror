@@ -7,16 +7,15 @@ $(function () {
   dots.push(_.times(width / (10 * 2), function (index) {
     return $('<div />').addClass('dot').css({top: 0, left: (index * 20)});
   }));
-  dots.push(_.times(width / (10 * 2), function (index) {
-    return $('<div />').addClass('dot').css({bottom: 0, left: (index * 20)});
-  }));
-  dots.push(_.times(height / (10 * 2), function (index) {
-    return $('<div />').addClass('dot').css({top: (index * 20), left: 0});
-  }));
   dots.push(_.times(height / (10 * 2), function (index) {
     return $('<div />').addClass('dot').css({top: (index * 20), right: 0});
   }));
-
+  dots.push(_.times(width / (10 * 2), function (index) {
+    return $('<div />').addClass('dot').css({bottom: 0, right: (index * 20)});
+  }));
+  dots.push(_.times(height / (10 * 2), function (index) {
+    return $('<div />').addClass('dot').css({bottom: (index * 20), left: 0});
+  }));
   dots = _.flatten(dots);
   dots.forEach(function (dot) {
     console.log('adding dot', dot);
