@@ -16,11 +16,26 @@ $(function () {
   dots.push(_.times(height / (10 * 2), function (index) {
     return $('<div />').addClass('dot').css({top: (index * 20), right: 0});
   }));
-  console.log('flat', _.flatten(dots));
-  _.flatten(dots).forEach(function (dot) {
+
+  dots = _.flatten(dots);
+  dots.forEach(function (dot) {
     console.log('adding dot', dot);
     $('body').append(dot);
   });
-  console.log('dots', dots);
+
+  var activeDot = 0;
+  dots[activeDot].addClass('active');
+  function traverseDots () {
+    var nextDot = activeDot + 1;
+    if (nextDot === dots.length) {
+      nextDot = 0;
+    }
+    dots[activeDot].removeClass('active');
+    activeDot = nextDot;
+    dots[activeDot].addClass('active');
+    setTimeout(traverseDots, 100);
+  }
+
+  setTimeout(traverseDots, 1000);
 
 });
