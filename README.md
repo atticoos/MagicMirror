@@ -2,6 +2,8 @@
 
 Turn your old tablets into a smart mirror display!
 
+Read the [blog tutorial](http://atticuswhite.com/blog/react-native-smart-mirror-lab/) on how to make your own.
+
 Inspired by [HannahMitt/HomeMirror](https://github.com/HannahMitt/HomeMirror)
 
 ### Environment Configuration
